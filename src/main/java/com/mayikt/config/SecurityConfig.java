@@ -1,5 +1,6 @@
 package com.mayikt.config;
 
+import com.mayikt.security.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,14 +21,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private MyAuthenticationFailureHandler failureHandler;
   @Autowired
   private MyAuthenticationSuccessHandler successHandler;
+  @Autowired
+	private MyUserDetailService myUserDetailService;
+
 	// 配置认证用户信息和权限
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// 添加admin账号
-		auth.inMemoryAuthentication().withUser("admin").password("123456").
-		authorities("showOrder","addOrder","updateOrder","deleteOrder");
-		// 添加userAdd账号
-		auth.inMemoryAuthentication().withUser("userAdd").password("123456").authorities("showOrder","addOrder");
-		// 如果想实现动态账号与数据库关联 在该地方改为查询数据库
+//		// 添加admin账号
+//		auth.inMemoryAuthentication().withUser("admin").password("123456").
+//		authorities("showOrder","addOrder","updateOrder","deleteOrder");
+//		// 添加userAdd账号
+//		auth.inMemoryAuthentication().withUser("userAdd").password("123456").authorities("showOrder","addOrder");
+//		// 如果想实现动态账号与数据库关联 在该地方改为查询数据库
+
+		auth.userDetailsService(myUserDetailService);
 
 	}
 
