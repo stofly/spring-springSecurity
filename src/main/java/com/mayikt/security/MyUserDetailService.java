@@ -22,6 +22,7 @@ public class MyUserDetailService implements UserDetailsService {
 	// 查询用户信息
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// 根据用户查询用户信息
+		//security底层帮我们验证密码
 		User user = userMapper.findByUsername(username);
 		// 根据用户查询用户对应权限
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

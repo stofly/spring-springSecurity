@@ -16,9 +16,8 @@ spring:
   mvc:
     static-path-pattern: /static/**
 
-    ####整合数据库层
+####整合数据库层
   datasource:
-    name: test
     url: jdbc:mysql://127.0.0.1:3306/rbac_db
     username: root
     password: root
